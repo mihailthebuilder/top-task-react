@@ -1,3 +1,7 @@
+# Project
+
+Following along The Odin Project's React course - handle inputs and render lists chapter: https://www.theodinproject.com/courses/javascript/lessons/handle-inputs-and-render-lists
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
