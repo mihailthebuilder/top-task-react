@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import Overview from './components/Overview.js';
+import AddTask from './components/AddTask.js';
 
 class App extends Component {
 
@@ -8,20 +9,35 @@ class App extends Component {
     
     //holds the list of tasks
     this.state = {
-      tasks: ['chicken','beef']
+      tasks: ['chicken','beef'],
+      inputValue: ''
     };
 
-    this.addTask = this.addTask.bind(this);
+    this.handleTaskSubmit = this.handleTaskSubmit.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
-  addTask() {
+  handleTaskSubmit(event) {
     //adds the task
-    console.log(this);
+    event.preventDefault();
+  }
+
+  handleInputChange(event) {
+    this.setState({
+      inputValue: event.target.value
+    })
   }
 
   render() {
     return (
-      <Overview tasks={this.state.tasks}/>
+      <div>
+        <AddTask
+          onFormSubmit={this.handleTaskSubmit}
+          onInputChange={this.handleInputChange}
+        />
+        <Overview tasks={this.state.tasks} />
+        <p>{this.state.inputValue}</p>
+      </div>
     )
   }
 }
