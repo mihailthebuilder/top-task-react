@@ -8,7 +8,7 @@ const AddTask = (props) => {
         type="text" 
         id="taskInput" 
         name="taskInput"
-        value={props.value}
+        value={props.inputValue}
         onChange={props.onInputChange}
       />
 

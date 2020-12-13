@@ -9,7 +9,7 @@ class App extends Component {
     
     //holds the list of tasks
     this.state = {
-      tasks: ['chicken','beef'],
+      tasks: [],
       inputValue: ''
     };
 
@@ -20,6 +20,11 @@ class App extends Component {
   handleTaskSubmit(event) {
     //adds the task
     event.preventDefault();
+
+    this.setState((state)=>({
+      tasks: [...state.tasks,this.state.inputValue],
+      inputValue: ''
+    }))
   }
 
   handleInputChange(event) {
@@ -34,9 +39,9 @@ class App extends Component {
         <AddTask
           onFormSubmit={this.handleTaskSubmit}
           onInputChange={this.handleInputChange}
+          inputValue={this.state.inputValue}
         />
         <Overview tasks={this.state.tasks} />
-        <p>{this.state.inputValue}</p>
       </div>
     )
   }
