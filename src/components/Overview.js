@@ -1,7 +1,9 @@
+import uniqid from "uniqid";
+
 const Overview = (props) => {
 
   let tasks = props.tasks.map(
-    (task,index)=><li key={index}>{task}</li>
+    (task)=><li key={uniqid()}>{task}</li>
   );
   
   return (
