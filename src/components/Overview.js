@@ -1,33 +1,31 @@
 import uniqid from "uniqid";
+import "./Overview.css";
 
 const Overview = (props) => {
-
-  let tasks = props.tasks.map((task)=>
+  let tasks = props.tasks.map((task) => (
     <li key={uniqid()}>
-      {task.key}: {task.value}
-      <button
-        onClick={props.onDeleteButtonPress}
-        targetkey={task.key}
-      >
-        Delete
-      </button>
-      {
-        (parseInt(props.keyInEditMode) === task.key)?
+      {task.key}
+      <span>: </span>
+
+      {parseInt(props.keyInEditMode) !== task.key ? (
+        <div>
+          <span>{task.value}</span>
+          <button onClick={props.onDeleteButtonPress} targetkey={task.key}>
+            Delete
+          </button>
+          <button onClick={props.onEditButtonPress} targetkey={task.key}>
+            Edit
+          </button>
+        </div>
+      ) : (
+        <div>
           <button>Submit Change</button>
-          :
-          <button
-          onClick={props.onEditButtonPress}
-          targetkey={task.key}
-        >
-          Edit
-        </button>
-      }
+        </div>
+      )}
     </li>
-  );
-  
-  return (
-    <ul>{tasks}</ul>
-  );
-}
+  ));
+
+  return <ul>{tasks}</ul>;
+};
 
 export default Overview;
