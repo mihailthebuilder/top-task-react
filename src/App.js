@@ -11,12 +11,15 @@ class App extends Component {
       tasks: [],
       inputValue: "",
       keyInEditMode: "",
+      editInputValue: "",
     };
 
     this.handleTaskSubmit = this.handleTaskSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
+    this.handleEditSubmission = this.handleEditSubmission.bind(this);
+    this.handleEditInputChange = this.handleEditInputChange.bind(this);
   }
 
   handleTaskSubmit(event) {
@@ -58,6 +61,17 @@ class App extends Component {
     });
   }
 
+  handleEditSubmission(event) {
+    event.preventDefault();
+    console.log("handled edit submission!");
+  }
+
+  handleEditInputChange(event) {
+    this.setState({
+      editInputValue: event.target.value,
+    });
+  }
+
   render() {
     return (
       <div>
@@ -71,6 +85,8 @@ class App extends Component {
           onDeleteButtonPress={this.handleDelete}
           onEditButtonPress={this.handleEdit}
           keyInEditMode={this.state.keyInEditMode}
+          onEditSubmission={this.handleEditSubmission}
+          onEditInputChange={this.handleEditInputChange}
         />
       </div>
     );

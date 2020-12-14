@@ -1,7 +1,8 @@
 import uniqid from "uniqid";
 import "./Overview.css";
 
-import { ListItem } from "../components/ListItem/ListItem.js";
+import ListItem from "../components/ListItem/ListItem.js";
+import ListItemEdited from "../components/ListItemEdited/ListItemEdited.js";
 
 const Overview = (props) => {
   let tasks = props.tasks.map((task) => (
@@ -16,9 +17,11 @@ const Overview = (props) => {
           onEditButtonPress={props.onEditButtonPress}
         />
       ) : (
-        <div>
-          <button>Submit Change</button>
-        </div>
+        <ListItemEdited
+          task={task}
+          onEditSubmission={props.onEditSubmission}
+          onEditInputChange={props.onEditInputChange}
+        />
       )}
     </li>
   ));
