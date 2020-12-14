@@ -2,7 +2,7 @@ const ListItemEdited = (props) => {
   return (
     <form>
       <input
-        value={props.taskInEdit.value}
+        value={props.task.value}
         onChange={props.onEditInputChange}
       ></input>
       <button type="submit">Submit Change</button>
