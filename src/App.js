@@ -15,14 +15,22 @@ class App extends Component {
 
     this.handleTaskSubmit = this.handleTaskSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleDeleteButton = 
+      this.handleDeleteButton.bind(this);
   }
 
   handleTaskSubmit(event) {
     //adds the task
     event.preventDefault();
 
+    let newTaskKey = this.state.tasks.length+1;
+    let newTaskValue = this.state.inputValue;
+
     this.setState((state)=>({
-      tasks: [...state.tasks,this.state.inputValue],
+      tasks: [
+        ...state.tasks, 
+        {key:newTaskKey,value:newTaskValue}
+      ],
       inputValue: ''
     }))
   }
@@ -33,6 +41,23 @@ class App extends Component {
     })
   }
 
+  handleDeleteButton(event) {
+  
+    this.setState((state)=>({
+      tasks: state.tasks.reduce(
+        (newArr,currentTask)=>
+          {
+            let toAdd = [];
+            if (currentTask.key !== parseInt(event.target.getAttribute('targetkey'))) {
+              toAdd = {key:newArr.length+1,value: currentTask.value};
+            };
+            return newArr.concat(toAdd);            
+          },
+        []
+      )
+    }))
+  }
+
   render() {
     return (
       <div>
@@ -41,7 +66,10 @@ class App extends Component {
           onInputChange={this.handleInputChange}
           inputValue={this.state.inputValue}
         />
-        <Overview tasks={this.state.tasks} />
+        <Overview
+          tasks={this.state.tasks}
+          onDeleteButtonPress={this.handleDeleteButton}
+        />
       </div>
     )
   }
