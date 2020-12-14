@@ -11,6 +11,17 @@ const Overview = (props) => {
       >
         Delete
       </button>
+      {
+        (parseInt(props.keyInEditMode) === task.key)?
+          <button>Submit Change</button>
+          :
+          <button
+          onClick={props.onEditButtonPress}
+          targetkey={task.key}
+        >
+          Edit
+        </button>
+      }
     </li>
   );
   

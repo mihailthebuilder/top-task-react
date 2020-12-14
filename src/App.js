@@ -10,13 +10,15 @@ class App extends Component {
     //holds the list of tasks
     this.state = {
       tasks: [],
-      inputValue: ''
+      inputValue: '',
+      keyInEditMode: ''
     };
 
     this.handleTaskSubmit = this.handleTaskSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleDeleteButton = 
-      this.handleDeleteButton.bind(this);
+    this.handleDelete = 
+      this.handleDelete.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
   }
 
   handleTaskSubmit(event) {
@@ -41,7 +43,7 @@ class App extends Component {
     })
   }
 
-  handleDeleteButton(event) {
+  handleDelete(event) {
   
     this.setState((state)=>({
       tasks: state.tasks.reduce(
@@ -58,6 +60,12 @@ class App extends Component {
     }))
   }
 
+  handleEdit(event) {
+    this.setState({
+      keyInEditMode: event.target.getAttribute('targetkey')
+    })
+  }
+
   render() {
     return (
       <div>
@@ -68,7 +76,9 @@ class App extends Component {
         />
         <Overview
           tasks={this.state.tasks}
-          onDeleteButtonPress={this.handleDeleteButton}
+          onDeleteButtonPress={this.handleDelete}
+          onEditButtonPress={this.handleEdit}
+          keyInEditMode={this.state.keyInEditMode}
         />
       </div>
     )
