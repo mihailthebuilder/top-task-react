@@ -10,7 +10,7 @@ const Overview = (props) => {
       {task.key}
       <span>: </span>
 
-      {parseInt(props.keyInEditMode) !== task.key ? (
+      {props.taskInEdit.key !== task.key ? (
         <ListItem
           task={task}
           onDeleteButtonPress={props.onDeleteButtonPress}
@@ -18,7 +18,7 @@ const Overview = (props) => {
         />
       ) : (
         <ListItemEdited
-          task={task}
+          taskInEdit={props.taskInEdit}
           onEditSubmission={props.onEditSubmission}
           onEditInputChange={props.onEditInputChange}
         />
