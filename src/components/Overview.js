@@ -1,6 +1,8 @@
 import uniqid from "uniqid";
 import "./Overview.css";
 
+import { ListItem } from "../components/ListItem/ListItem.js";
+
 const Overview = (props) => {
   let tasks = props.tasks.map((task) => (
     <li key={uniqid()}>
@@ -8,15 +10,11 @@ const Overview = (props) => {
       <span>: </span>
 
       {parseInt(props.keyInEditMode) !== task.key ? (
-        <div>
-          <span>{task.value}</span>
-          <button onClick={props.onDeleteButtonPress} targetkey={task.key}>
-            Delete
-          </button>
-          <button onClick={props.onEditButtonPress} targetkey={task.key}>
-            Edit
-          </button>
-        </div>
+        <ListItem
+          task={task}
+          onDeleteButtonPress={props.onDeleteButtonPress}
+          onEditButtonPress={props.onEditButtonPress}
+        />
       ) : (
         <div>
           <button>Submit Change</button>
