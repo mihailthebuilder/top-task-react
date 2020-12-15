@@ -68,7 +68,20 @@ class App extends Component {
 
   handleEditSubmission(event) {
     event.preventDefault();
-    console.log("handled edit submission!");
+
+    this.setState((state) => {
+      let newTaskList = state.tasks.slice();
+      newTaskList[state.keyInEditMode - 1] = {
+        key: state.keyInEditMode,
+        value: state.editInputValue,
+      };
+
+      return {
+        tasks: newTaskList,
+        keyInEditMode: "",
+        editInputValue: "",
+      };
+    });
   }
 
   handleEditInputChange(event) {

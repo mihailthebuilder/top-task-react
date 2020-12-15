@@ -1,6 +1,6 @@
 const ListItemEdited = (props) => {
   return (
-    <form>
+    <form onSubmit={props.onEditSubmission}>
       <input
         value={props.editInputValue}
         onChange={props.onEditInputChange}
