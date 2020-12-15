@@ -56,8 +56,13 @@ class App extends Component {
   }
 
   handleEdit(event) {
-    this.setState({
-      keyInEditMode: event.target.getAttribute("targetkey"),
+    this.setState((state) => {
+      let targetKey = parseInt(event.target.getAttribute("targetkey"));
+
+      return {
+        keyInEditMode: targetKey,
+        editInputValue: state.tasks[targetKey - 1].value,
+      };
     });
   }
 
@@ -85,6 +90,7 @@ class App extends Component {
           onDeleteButtonPress={this.handleDelete}
           onEditButtonPress={this.handleEdit}
           keyInEditMode={this.state.keyInEditMode}
+          editInputValue={this.state.editInputValue}
           onEditSubmission={this.handleEditSubmission}
           onEditInputChange={this.handleEditInputChange}
         />

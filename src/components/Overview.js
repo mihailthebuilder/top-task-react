@@ -18,7 +18,8 @@ const Overview = (props) => {
         />
       ) : (
         <ListItemEdited
-          task={task}
+          keyInEditMode={props.keyInEditMode}
+          editInputValue={props.editInputValue}
           onEditSubmission={props.onEditSubmission}
           onEditInputChange={props.onEditInputChange}
         />
